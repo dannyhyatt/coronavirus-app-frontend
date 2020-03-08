@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "427729355637",
+    "firebase_url": "https://coronavirus-fcm.firebaseio.com",
+    "project_id": "coronavirus-fcm",
+    "storage_bucket": "coronavirus-fcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427729355637:android:97b63003ff11d62c29093c",
+        "android_client_info": {
+          "package_name": "com.dannyyyy.coronavirus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427729355637-iq9j6514rovus650qtja6ksp0ebjva6t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dannyyyy.coronavirus",
+            "certificate_hash": "99ac8d8675ecdf19683ed9cb88b4bb86c646b317"
+          }
+        },
+        {
+          "client_id": "427729355637-dli0hahj84cemlv55vqk4glnrp2s3pje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-LV7y_TY18ist5_jxK3GEhk-lSIYugcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427729355637-dli0hahj84cemlv55vqk4glnrp2s3pje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
