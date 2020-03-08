@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:coronavirus/main.dart';
 import 'package:coronavirus/notifs_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:app_review/app_review.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
