@@ -63,13 +63,13 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) {
+      onMessage: (Map<String, dynamic> message) async {
         print('onMessage called: $message');
       },
-      onResume: (Map<String, dynamic> message) {
+      onResume: (Map<String, dynamic> message) async {
         print('onResume called: $message');
       },
-      onLaunch: (Map<String, dynamic> message) {
+      onLaunch: (Map<String, dynamic> message) async {
         print('onLaunch called: $message');
       },
     );

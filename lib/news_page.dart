@@ -1,6 +1,7 @@
 import 'package:coronavirus/news_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'main.dart';
 
@@ -13,6 +14,7 @@ class _NewsPageState extends State<NewsPage> {
 
   List<Widget> cards = List<Widget>();
   ScrollController _controller = ScrollController();
+  RefreshController _refreshController = RefreshController();
   LoadingState loadingState;
 
   @override
@@ -24,6 +26,13 @@ class _NewsPageState extends State<NewsPage> {
         addNews();
     });
     addNews();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    _controller.dispose();
+    super.dispose();
   }
 
   void addNews() {
@@ -41,10 +50,13 @@ class _NewsPageState extends State<NewsPage> {
       if(res.data['success'] == true) {
         for(int i = 0; i < res.data['results'].length; i++) {
           try {
+            // this is integral to funcitonality
             debugPrint('just got ${res.data['results'][i]['title']}');
           } catch(e) {
-            if(cards.last is NewsCard)
-              cards.add(Center(child: Text('there is no news before this point')));
+            if(cards.last is NewsCard) {
+              cards.add(Center(child: Text('there is no news before this point\n')));
+            }
+            _controller.jumpTo(_controller.offset - 1);
             continue;
           }
           cards.add(NewsCard(
@@ -58,6 +70,8 @@ class _NewsPageState extends State<NewsPage> {
       setState(() {
         loadingState = LoadingState.SUCCESS;
       });
+//      _controller.animateTo(_controller.offset + 70, duration: Duration(milliseconds: 200), curve: Curves.bounceIn);
+      _refreshController.refreshCompleted();
     }, onError: (e){
       setState(() {
         loadingState = LoadingState.ERROR;
@@ -85,15 +99,24 @@ class _NewsPageState extends State<NewsPage> {
             )
           ],
         ),
-      ) : ListView.builder(
-        controller: _controller,
-        shrinkWrap: true,
-        itemCount: cards.length + 1,
-        itemBuilder: (ctx, index) {
-          if(index == cards.length)
-            return loadingState == LoadingState.LOADING ? Center(child: CircularProgressIndicator()) : Container();
-          return cards[index];
+      ) : SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        enableTwoLevel: true,
+        onRefresh: () {
+          cards = List<Widget>();
+          addNews();
         },
+        child: ListView.builder(
+          controller: _controller,
+          shrinkWrap: true,
+          itemCount: cards.length + 1,
+          itemBuilder: (ctx, index) {
+            if(index == cards.length)
+              return loadingState == LoadingState.LOADING ? Center(child: CircularProgressIndicator()) : Container();
+            return cards[index];
+          },
+        ),
       ),
     );
   }
@@ -146,8 +169,8 @@ class _NewsCardState extends State<NewsCard> {
                           flex: 6,
                         ),
                         Flexible(
-                            child: Text('${widget.id}', style: TextStyle(color: Colors.white30, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic),),
-                            flex: 1
+                            child: Text('${widget.dateAdded}', style: TextStyle(color: Colors.white30, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic),),
+                            flex: 3
                         ),
                       ], // id for testing purposes, date for prod
                     ),
