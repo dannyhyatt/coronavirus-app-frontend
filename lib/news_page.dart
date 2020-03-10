@@ -44,7 +44,7 @@ class _NewsPageState extends State<NewsPage> {
     Dio dio = Dio();
 
     //TODO send the date of the latest one and get ones on or after that date
-    String url = 'http://108.31.15.11:8080/latest/${cards.length /* - 1 ? */ }';
+    String url = 'https://corona.icanhelp.us/latest/${cards.length /* - 1 ? */ }';
     debugPrint("url: $url");
     dio.get(url).then((Response res) {
       if(res.data['success'] == true) {
@@ -163,6 +163,7 @@ class _NewsCardState extends State<NewsCard> {
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Flexible(
                           child: Text('${widget.title}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700), maxLines: 2),
