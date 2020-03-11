@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:427729355637:android:7e8c424cee77843a29093c",
+        "android_client_info": {
+          "package_name": "com.dannyyyy.corona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427729355637-dli0hahj84cemlv55vqk4glnrp2s3pje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-LV7y_TY18ist5_jxK3GEhk-lSIYugcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427729355637-dli0hahj84cemlv55vqk4glnrp2s3pje.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "427729355637-7ibv4dosbks62l5l036nkc17tg2um0vv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dannyyyy.coronavirus",
+                "app_store_id": "1501998531"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:427729355637:android:97b63003ff11d62c29093c",
         "android_client_info": {
           "package_name": "com.dannyyyy.coronavirus"
@@ -38,6 +75,14 @@
             {
               "client_id": "427729355637-dli0hahj84cemlv55vqk4glnrp2s3pje.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "427729355637-7ibv4dosbks62l5l036nkc17tg2um0vv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dannyyyy.coronavirus",
+                "app_store_id": "1501998531"
+              }
             }
           ]
         }

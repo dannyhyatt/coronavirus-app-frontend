@@ -1,5 +1,6 @@
 import 'package:coronavirus/cdc_faq_screen.dart';
 import 'package:coronavirus/main.dart';
+import 'package:coronavirus/mission_statement.dart';
 import 'package:coronavirus/myths_vs_facts.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,8 +24,11 @@ class InfoScreen extends StatelessWidget {
           row('WHO q&a', () {
             MyApp.launchURL('https://www.who.int/news-room/q-a-detail/q-a-coronaviruses');
           }),
-          row('myths vs facts', () {
+          row('myths vs facts >', () {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) => MythsVsFacts()));
+          }),
+          row('mission statement >', () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionStatement()));
           })
         ],
       ),

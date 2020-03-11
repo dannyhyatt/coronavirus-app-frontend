@@ -54,7 +54,10 @@ class _NewsPageState extends State<NewsPage> {
             debugPrint('just got ${res.data['results'][i]['title']}');
           } catch(e) {
             if(cards.last is NewsCard) {
-              cards.add(Center(child: Text('there is no news before this point\n')));
+              cards.add(Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 72),
+                child: Center(child: Text('there is no news before this point\n')),
+              ));
             }
             _controller.jumpTo(_controller.offset - 1);
             continue;
@@ -144,46 +147,49 @@ class NewsCard extends StatefulWidget {
 class _NewsCardState extends State<NewsCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.black87.withOpacity(0.95),
-      clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => NewsScreen(newsCard: widget)));
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Flexible(
-                flex: 6,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Flexible(
-                          child: Text('${widget.title}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700), maxLines: 2),
-                          flex: 6,
-                        ),
-                        Flexible(
-                            child: Text('${widget.dateAdded}', style: TextStyle(color: Colors.white30, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic),),
-                            flex: 3
-                        ),
-                      ], // id for testing purposes, date for prod
-                    ),
-                    Text('${widget.url}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300), maxLines: 1,)
-                  ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Card(
+        color: Colors.black87.withOpacity(0.95),
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => NewsScreen(newsCard: widget)));
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  flex: 6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Flexible(
+                            child: Text('${widget.title}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700), maxLines: 2),
+                            flex: 6,
+                          ),
+                          Flexible(
+                              child: Text('${widget.dateAdded}', style: TextStyle(color: Colors.white30, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic),),
+                              flex: 3
+                          ),
+                        ], // id for testing purposes, date for prod
+                      ),
+                      Text('${widget.url}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300), maxLines: 1,)
+                    ],
+                  ),
                 ),
-              ),
 //          Flexible(
 //            flex: 1,
 //            child: Image.network(src),
 //          )
-            ],
+              ],
+            ),
           ),
         ),
       ),
